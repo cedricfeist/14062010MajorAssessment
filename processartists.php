@@ -1,10 +1,8 @@
 <?php 
-
 include("artistsconnect.php">;
         $debugOn = true;
         
 ?>
-
 <!doctype html>
 <html>
     <head>
@@ -49,7 +47,7 @@ include("artistsconnect.php">;
         echo "</p>\n";
 
         echo "<h2>Current Artists</h2>\n"
-  //      $sql = "SELECT * FROM artists
+        $sql = "SELECT * FROM artists"
         </body>
 
         </html>
