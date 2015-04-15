@@ -47,7 +47,26 @@ include("artistsconnect.php">;
         echo "</p>\n";
 
         echo "<h2>Current Artists</h2>\n"
-        $sql = "SELECT * FROM artists"
+        $sql = "SELECT * FROM artists";
+        $result = $dbh -> query($sql);
+        $resultCopy = $result;
+        
+        if ($debugOn) {
+            echo "<pre>";
+            
+            $rows = $result -> fetchall(PDO::FETCH_ASSOC);
+            echo count($rows) . " records in table <br>\n";
+            echo "</pre>"
+            echo "<br />\n"
+                
+        } 
+        foreach ($dbh -> query($sql) as $row) {
+            print $row[name] . "<br />\n";
+        }
+        $dbh = null;
+        ?>
+        
+        
         </body>
 
         </html>
