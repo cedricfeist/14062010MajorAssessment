@@ -21,7 +21,7 @@ include("artistsconnect.php");
                 </p>
                 <p>
                     <label for="description">Details: </label>
-                    <input type="text" name="description" id="description">
+                    <input type="text" name="details" id="details">
                 </p>
                 <p>
                     <label for="description">Contact: </label>
@@ -40,13 +40,14 @@ include("artistsconnect.php");
         <fieldset>
             <h2>Artists: </h2>
 
-            <?php 
+            <?php
 $sql = "SELECT * FROM artists";
-foreach ($dbh -> query($sql) as $row) {
+foreach ($dbh->query($sql) as $row) {
             ?>
             <form  id="delete" name="delete" method="post" action="processartists.php">
                 <?php
-    echo"<input type='text' name'name' value='$row[name]' />
+    echo"<input type='hidden' name='id' value='$row[id]' />
+    <input type='text' name='name' value='$row[name]' />
         <input type='text' name='details' value='$row[details]'/>
         <input type='text' name='contact' value='$row[contact]'/>
         <input type='text' name='date' value='$row[date]'/>\n";
