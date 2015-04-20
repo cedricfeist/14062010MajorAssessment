@@ -3,33 +3,28 @@ include("artistsconnect.php");
 ?>
 
 <!doctype html>
-
 <html>
 <head>
-    <meta charset="UTF-8">
-    
+<meta charset="UTF-8"> 
 </head>
+<body>
 
-    <body>
-<?php 
+
+<?php
+
 $sql = "SELECT * FROM artists WHERE id='$_GET[tag]'";
-var_dump ($dbh);
-echo"<br>";
 
-echo $sql;
-echo"<br>";
-
-$results = $dbh->query($sql);
-echo"<br>";
-var_dump ($results);
-
-printf("Name:%s <br>", $results[name]);
+foreach ($dbh->query($sql) as $row) {
+    printf("ID: %s<br>", $row[id]);
+    printf("Name: %s<br>", $row[name]);
+    printf("Details: %s<br>", $row[details]);
+    printf("Contact: %s<br>", $row[contact]);
+    printf("Date: %s<br>", $row[date]);
+}
 
 $dbh = null;
-
 ?>
 
-    </body>
-
-
+<a href="artists.php">BACK</a>
+</body>
 </html>
