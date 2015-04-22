@@ -7,29 +7,37 @@ include("artistsconnect.php");
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Artists Database Trial</title>
+        <title>Artists Database Management</title>
     </head>
 
     <body>
-        <h1>Artists Database</h1>
+        <h1>Artists Database Management</h1>
         <form id="insert" name="insert" method="post" action="processartists.php">
             <fieldset>
-                <h2>Insert new phone record:</h2>
+                <h2>Insert new Artist:</h2>
                 <p>
                     <label for="name">Name: </label>
                     <input type="text" name="name" id="name">
                 </p>
                 <p>
-                    <label for="description">Details: </label>
+                    <label for="details">Details: </label>
                     <input type="text" name="details" id="details">
                 </p>
                 <p>
-                    <label for="description">Contact: </label>
-                    <input type="text" name="contact" id="contact">
+                    <label for="phone">Phone: </label>
+                    <input type="text" name="phone" id="phone">
                 </p>
                 <p>
-                    <label for="description">Date: </label>
-                    <input type="text" name="date" id="date">
+                    <label for="email">Email: </label>
+                    <input type="text" name="email" id="email">
+                </p>
+                <p>
+                    <label for="website">Website: </label>
+                    <input type="text" name="website" id="website">
+                </p>
+                <p>
+                    <label for="image">Image: </label>
+                    <input type="text" name="image" id="image">
                 </p>
                 <p>
                     <input type="submit" name="submit" id="submit" value="Insert">
@@ -39,29 +47,54 @@ include("artistsconnect.php");
 
         <fieldset>
             <h2>Artists: </h2>
-
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Details</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Website</th>
+                <th>Image Filepath</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
             <?php
 $sql = "SELECT * FROM artists";
 foreach ($dbh->query($sql) as $row) {
             ?>
             <form  id="delete" name="delete" method="post" action="processartists.php">
+                
                 <?php
-    echo"<input type='hidden' name='id' value='$row[id]' />
-    <input type='text' name='name' value='$row[name]' />
-        <input type='text' name='details' value='$row[details]'/>
-        <input type='text' name='contact' value='$row[contact]'/>
-        <input type='text' name='date' value='$row[date]'/>\n";
+    echo"<tr><input type='hidden' name='id' value='$row[id]' />
+    <td><input type='text' name='name' value='$row[name]' /></td>
+        <td><input type='text' name='details' value='$row[details]'/></td>
+        <td><input type='text' name='phone' value='$row[phone]'/></td>
+        <td><input type='text' name='email' value='$row[email]'/></td>\n
+        <td><input type='text' name='website' value='$row[website]'/></td>\n
+        <td><input type='text' name='image' value='$row[image]'/></td>\n";
                 ?>
-                <input type="submit" name="submit" value="Update" />
-                <input type="submit" name="submit" value="Delete" class="delete">
+                <td><input type="submit" name="submit" value="Update" /></td>
+                <td><input type="submit" name="submit" value="Delete" class="delete"></td>
+                </tr>
             </form>
             <?php 
 }
+echo "</table>\n";
 echo "</fieldset> \n";
-$dbh = null;
+
             ?>
+            <div>
+            <h2>All Artists</h2>
+            <?php
+$sql = "SELECT * FROM  artists";
+foreach ($dbh->query($sql) as $row) {
+    printf("<a href = \"artistinfo.php?tag=%s\">%s</a><br>\n", $row[id], $row[name]);
+    
+}
 
-
+$dbh = null;
+?>
+            </div>
             </body>
 
         </html>

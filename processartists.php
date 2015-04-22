@@ -7,7 +7,7 @@ include("artistsconnect.php");
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Artists Proccess</title>
+        <title>Artists Process</title>
     </head>
 
     <body>
@@ -21,7 +21,7 @@ include("artistsconnect.php");
         echo "</pre>";
 
         if ($_REQUEST['submit'] == "Insert"){
-            $sql = "INSERT INTO artists (name, details, contact, date) VALUES ('$_REQUEST[name]', '$_REQUEST[details]', '$_REQUEST[contact]', '$_REQUEST[date]')";
+            $sql = "INSERT INTO artists (name, details, phone, email, website, image) VALUES ('$_REQUEST[name]', '$_REQUEST[details]', '$_REQUEST[phone]', '$_REQUEST[email]', '$_REQUEST[website]', '$_REQUEST[image]')";
             echo "<p>Query: " .$sql . "</p>\n<p>";
             if ($dbh->exec($sql))
                 echo "Inserted $_REQUEST[name]";
@@ -37,7 +37,7 @@ include("artistsconnect.php");
                 echo "Not deleted";
         }
         else if ($_REQUEST['submit'] == "Update") {
-            $sql = "UPDATE artists SET name = '$_REQUEST[name]', details = '$_REQUEST[details]', contact = '$_REQUEST[contact]', date = '$_REQUEST[date]' WHERE id = '$_REQUEST[id]'";
+            $sql = "UPDATE artists SET name = '$_REQUEST[name]', details = '$_REQUEST[details]', phone = '$_REQUEST[phone]', email = '$_REQUEST[email]', website = '$_REQUEST[website]', image = '$_REQUEST[image]' WHERE id = '$_REQUEST[id]'";
             echo "<p>Query: " . $sql . "</p>\n<p>";
             if ($dbh->exec($sql)) 
                 echo "Updated $_REQUEST[name]";
@@ -49,7 +49,6 @@ include("artistsconnect.php");
         }
               
         echo "</p>\n";
-
 
         echo "<h2>Current Artists</h2>\n";
 

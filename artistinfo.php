@@ -15,12 +15,14 @@ include("artistsconnect.php");
 $sql = "SELECT * FROM artists WHERE id='$_GET[tag]'";
 
 foreach ($dbh->query($sql) as $row) {
-    printf("ID: %s<br>", $row[id]);
+    printf("<img src=\"%s\"><br>", $row[image]);
     printf("Name: %s<br>", $row[name]);
     printf("Details: %s<br>", $row[details]);
-    printf("Contact: %s<br>", $row[contact]);
-    printf("Date: %s<br>", $row[date]);
+    printf("Phone: %s<br>", $row[phone]);
+    printf("Email: %s<br>", $row[email]);
+    printf("Website: %s<br>", $row[website]);
 }
+ 
 
 $dbh = null;
 ?>
