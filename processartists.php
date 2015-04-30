@@ -7,7 +7,7 @@ include("artistsconnect.php");
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Artists Process</title>
+        <title>Artists Proccess</title>
     </head>
 
     <body>
