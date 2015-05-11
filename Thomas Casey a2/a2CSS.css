@@ -1,0 +1,290 @@
+@charset "utf-8";
+/* CSS Document */
+
+header {
+	width: auto;
+	height: 100px;
+	float: left;
+}
+#logo {
+	width: 150px;
+	height: 100px;
+	float: left;
+}
+#optionButtons {
+	width: 120px;
+	height: 100px;
+	float: right;
+	margin-top: auto;
+	padding-right: 10px;
+	padding-top: 120px;
+}
+#nav {
+	width: 120px;
+	height: 30px;
+	float: left;
+	display: block;
+	margin-top: 70px;
+	font-style: normal;
+	font-size: larger;
+	font-family: basic;
+	font-weight: 400;
+	color: #6B6B6B;
+	text-align: center;
+	clear: none;
+}
+#nav1 {
+	width: 180px;
+	height: 30px;
+	float: left;
+	display: block;
+	margin-top: 70px;
+	font-style: normal;
+	font-size: larger;
+	font-family: basic;
+	font-weight: 400;
+	color: #6B6B6B;
+	text-align: center;
+	clear: none;
+}
+#headerLogin {
+	width: 200px;
+	height: 100px;
+	float: right;
+	text-align: left;
+}
+#artistImg {
+	width: 250px;
+	height: 320px;
+	float: left;
+	margin-left: 50px;
+	padding-top: 20px;
+}
+#artistDetails {
+	height: 320px;
+	float: left;
+	max-width: 850px;
+	width: auto;
+	min-height: 800px;
+}
+
+#artistName {
+	width: 250px;
+	height: 20px;
+	float: left;
+}
+#artistInfo {
+	width: 1050px;
+	height: 200px;
+	margin-top: 15px;
+	left: auto;
+	right: auto;
+	float: left;
+	margin-left: 50px;
+}
+
+#upcomingEvents {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	height: auto;
+	float: left;
+	font-family: arimo;
+	font-style: normal;
+	font-weight: 400;
+	color: #7C7C7C;
+	text-shadow: 0px 0px;
+
+}
+#imgUpcomingEventText {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	width: 250px;
+	height: 260px;
+	float: left;
+	padding-left: 30px;
+	padding-bottom: auto;
+	padding-top: 20px;
+	padding-right: 40px;
+}
+#sponsors {
+	margin-top: 30px;
+	background-color: #FFFFFF;
+	height: 180px;
+}
+#sponsorsHeader {
+	height: 35px;
+	margin-top: 20px;
+	text-align: left;
+	color: #575757;
+	font-family: basic;
+	font-style: normal;
+	font-weight: 400;
+}
+#upcomingEventsHeader {
+	height: 45px;
+	background-color: #75CB82;
+	color: #FFFFFF;
+	font-family: basic;
+	font-style: normal;
+	font-weight: 400;
+	text-align: center;
+	padding-top: 15px;
+}
+#background {
+	width: 1500px;
+	height: 1000px;
+	z-index: 1;
+}
+#wrap {
+	background-image: url(url);
+	background-color: #FFFFFF;
+	min-width: 980px;
+	padding-bottom: 20px;
+	height: auto;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: auto;
+	margin-top: auto;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	min-height: 345px;
+}
+#wrapmain {
+	background-image: url(url);
+	background-color: #013B02;
+	padding-left: 20px;
+	padding-top: 20px;
+	padding-right: 20px;
+	min-width: 1000px;
+	padding-bottom: 20px;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+#sponsorsImg {
+	width: 85px;
+	height: 100px;
+	padding-left: 10px;
+	padding-right: 15px;
+	float: left;
+}
+#sponsorsTxt {
+	float: left;
+	padding-top: 5px;
+	padding-right: 5px;
+	font-family: arimo;
+	font-style: normal;
+	font-weight: 400;
+	text-align: left;
+	color: #7C7C7C;
+	width: 490px;
+}
+#footer {
+	min-width: 1000px;
+	height: 80px;
+	padding-top: 5px;
+	padding-left: 10px;
+	background-color: #FFFFFF;
+	color: #7F7F7F;
+	font-family: arimo;
+	font-style: normal;
+	font-weight: 400;
+}
+#signIn {
+	width: 100px;
+	margin-left: 50px;
+	margin-right: 50px;
+	margin-top: 5px;
+	height: 24px;
+	border-radius: 8px;
+	background-color: #51D064;
+	-webkit-box-shadow: 0px 0px;
+	box-shadow: 0px 0px;
+	border: 6px outset #51D064;
+	text-align: center;
+	font-family: averia-libre;
+	font-style: normal;
+	font-weight: 400;
+	color: #FFFFFF;
+	padding-top: 4px;
+}
+#btnBuyTicket {
+	width: 100px;
+	margin-top: 5px;
+	height: 24px;
+	border-radius: 8px;
+	background-color: #51D064;
+	-webkit-box-shadow: 0px 0px;
+	box-shadow: 0px 0px;
+	border: 6px outset #51D064;
+	text-align: center;
+	font-family: averia-libre;
+	font-style: normal;
+	font-weight: 400;
+	color: #FFFFFF;
+	padding-top: 4px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#signUp {
+	width: 100px;
+	margin-left: 50px;
+	margin-right: 50px;
+	margin-top: 5px;
+	height: 24px;
+	border-radius: 8px;
+	background-color: #ED091E;
+	-webkit-box-shadow: 0px 0px;
+	box-shadow: 0px 0px;
+	border: 6px outset #ED091E;
+	text-align: center;
+	font-family: averia-libre;
+	font-style: normal;
+	font-weight: 400;
+	color: #FFFFFF;
+	padding-top: 4px;
+}
+#btnViewMore {
+	width: 100px;
+	margin-top: 5px;
+	height: 24px;
+	border-radius: 8px;
+	background-color: #777777;
+	-webkit-box-shadow: 0px 0px;
+	box-shadow: 0px 0px;
+	border: 6px outset #5F5F5F;
+	text-align: center;
+	font-family: averia-libre;
+	font-style: normal;
+	font-weight: 400;
+	color: #FFFFFF;
+	padding-top: 4px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#headermain {
+	width: auto;
+	height: 100px;
+	min-width: 800px;
+}
+#AboutUsInfo {
+	min-width: 1410px;
+	min-height: 160px;
+}
+#TimeLine {
+	min-width: 1410px;
+	min-height: 320px;
+}
+#BulletinSubHeader {
+	min-width: 1410px;
+	min-height: 40px;
+	margin-top: 15px;
+}
