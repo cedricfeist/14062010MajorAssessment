@@ -16,7 +16,7 @@ include("dbconnect.php");
 
         $sql = "SELECT * FROM  events";
         foreach ($dbh->query($sql) as $row) {
-            echo("<tr><td>$row[name]</td><td>$row[location]</td><td>$row[eventDate]</td><td>$row[details]</td><td>$row[ticketLink]</td></tr>");
+            echo("<tr><td>Event name: $row[name]</td><td>Location: $row[location]</td><td>Date: $row[eventDate]</td><td>Details: $row[details]</td><td>Buy tickets: $row[ticketLink]</td></tr>");
         }
         $dbh = null;
         ?>

@@ -1,6 +1,6 @@
 TODO:
 
-Image upload isn't functioning
+Fixed - Image upload isn't functioning
 
 Provided information needs to be added to the database.
 

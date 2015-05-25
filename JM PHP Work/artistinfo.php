@@ -16,7 +16,7 @@ foreach ($dbh->query($sql) as $row) {
     printf("Details: %s<br>", $row[details]);
     printf("Phone: %s<br>", $row[phone]);
     printf("Email: %s<br>", $row[email]);
-    printf("Website: %s<br>", $row[website]);
+    printf("Website: <a href='%s'>%s</a><br>", $row[website], $row[website]);
 }
 $dbh = null;
 ?>

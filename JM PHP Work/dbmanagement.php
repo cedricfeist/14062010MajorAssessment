@@ -75,12 +75,12 @@ include("dbconnect.php");
 </fieldset>
 
 <?php
-if ($_SESSION[accountType] != 'free') {
+if ($_SESSION["accountType"] != 'free') {
     ?>
     <h1>Artists Database Table Management</h1>
 
     <fieldset>
-        <form id="insert" name="insert" method="post" action="processartists.php">
+        <form id="insert" name="insert" method="post" action="processartists.php" enctype="multipart/form-data">
             <h2>Insert new Artist:</h2>
             <table>
                 <tr>
@@ -162,7 +162,7 @@ if ($_SESSION[accountType] != 'free') {
 ?>
 
 <?php
-if ($_SESSION[accountType] == "admin") {
+if ($_SESSION["accountType"] == "admin") {
     ?>
     <h1>Events Database Table Management</h1>
 
@@ -268,15 +268,15 @@ if ($_SESSION[accountType] == "admin") {
                     <?php
                     echo "<tr><input type='hidden' name='id' value='$row[id]' />
                 <td><input type='text' name='username' value='$row[username]' /></td>
-                <td>$row[password]</td>
-                <td>
-                <select name='type'>
-                    <option value='free'>Free</option>
-                    <option value='paid'>Paid</option>
-                    <option value='admin'>Admin</option>
-                </select>
-                </td>";
+                <td>$row[password]</td>";
                     ?>
+                    <td>
+                        <select name='type'>
+                            <option value='free'<?php if ($row['type'] == 'free') echo " selected='selected'";?>>Free</option>
+                            <option value='paid'<?php if ($row['type'] == 'paid') echo " selected='selected'";?>>Paid</option>
+                            <option value='admin'<?php if ($row['type'] == 'admin') echo " selected='selected'";?>>Admin</option>
+                        </select>
+                    </td>
                     <td><input type="submit" name="submit" value="Update"/></td>
                     <td><input type="submit" name="submit" value="Delete" class="delete"></td>
                     </tr>
