@@ -1,0 +1,20 @@
+TODO:
+
+Image upload isn't functioning
+
+Provided information needs to be added to the database.
+
+Need to add a featured artist. (New DB table for artists column)
+
+Eventslist needs to show the artist, and the buy tickets link should be made an actual link
+
+Noticelist + eventlist should be formatted to look neater.
+
+Artist categories need to be added, and list artist needs to have the option to view artists by category
+
+Register new account needs a new field to see if the user wishes to volunteer. User table should have a new column to manage this.
+
+Include php files into first year html's.
+
+Notes:
+Login + signup could be on the same page.

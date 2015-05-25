@@ -49,7 +49,6 @@ include("dbconnect.php");
             <th>Delete</th>
         </tr>
         <?php
-        //To Do:  If user != admin, SELECT * FROM notices WHERE authorID="$_SESSION[userID]"
         if ($_SESSION["accountType"] != 'admin')
             $sql = sprintf("SELECT * FROM notices WHERE authorID = '%s'", $_SESSION["userID"]);
         else
@@ -110,8 +109,8 @@ if ($_SESSION[accountType] != 'free') {
                 </tr>
 
                 <tr>
-                    <td><label for="imageFile">Image: </label></td>
-                    <td><input type="file" name="imageFile" id="imagefile"></td>
+                    <td><label for="imagefile">Image: </label></td>
+                    <td><input type="file" name="imagefile" id="imagefile"></td>
                 </tr>
             </table>
 

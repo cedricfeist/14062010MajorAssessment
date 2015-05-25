@@ -1,10 +1,7 @@
 <?php session_start();
-// Report all PHP errors 
 error_reporting(E_ALL);
-/*	This file is a login page that will send the user to a secure page.
-	There's a session 'msg' variable, which will be blank the first time (when not set).
-*/
 ?>
+
 <!doctype html>
 <html>
 <head>
@@ -14,11 +11,9 @@ error_reporting(E_ALL);
 <body>
 <h1>Login Page</h1>
 <?php
-// print message from session, if one exists
 if (isset($_SESSION['msg'])) {
     echo "<p style='color:red'>" . $_SESSION['msg'] . "</p>";
 }
-// Only display the login form if the user is not logged in
 if (!isset($_SESSION['username'])) {
     ?>
     <form id="login" name="login" method="post" action="secureUserPage.php">
