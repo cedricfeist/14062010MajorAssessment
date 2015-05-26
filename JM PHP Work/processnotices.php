@@ -13,12 +13,19 @@ include("dbconnect.php");
 <body>
 <h2>Process</h2>
 <?php
-echo "<h2>Form Data</h2>";
-echo "<pre>";
-print_r($_REQUEST);
-echo "</pre>";
+$target_dir = "images/";
+$target_file = $target_dir . basename($_FILES["imagefile"]["name"]);
+move_uploaded_file($_FILES["imagefile"]["tmp_name"], $target_file);
+?>
+<h2>Form Data</h2>
+<pre>
+    <?php
+    print_r($_REQUEST);
+    ?>
+</pre>
+<?php
 if ($_REQUEST['submit'] == "Insert") {
-    $sql = "INSERT INTO notices (authorID, content, expiration) VALUES ( '$_REQUEST[authorID]','$_REQUEST[content]', '$_REQUEST[expiration]')";
+    $sql = "INSERT INTO notices (authorID, content, expiration, image) VALUES ( '$_REQUEST[authorID]','$_REQUEST[content]', '$_REQUEST[expiration]', '$target_file')";
     echo "<p>Query: " . $sql . "</p>\n<p>";
     if ($dbh->exec($sql))
         echo "Inserted notice with expiry date: $_REQUEST[expiration]";

@@ -9,7 +9,7 @@
 
 <ul>
     <li>
-        <a href="dbmanagement.php">Manage database</a>
+        <a href="DBManagementPage.php">Manage database</a>
     </li>
     <li>
         <a href="artistlist.php">View Artists</a>
@@ -21,10 +21,10 @@
         <a href="noticelist.php">View Notices</a>
     </li>
     <li>
-        <a href="login.php">Login</a>
+        <a href="LoginPage.php">Login</a>
     </li>
     <li>
-        <a href="registeruser.php">New User</a>
+        <a href="RegisterPage.php">New User</a>
     </li>
 </ul>
 </body>

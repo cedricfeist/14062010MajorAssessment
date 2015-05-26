@@ -13,12 +13,20 @@ include("dbconnect.php");
 <body>
 <h2>Process</h2>
 <?php
-echo "<h2>Form Data</h2>";
-echo "<pre>";
-print_r($_REQUEST);
-echo "</pre>";
+// Image upload handling
+$target_dir = "images/";
+$target_file = $target_dir . basename($_FILES["imagefile"]["name"]);
+move_uploaded_file($_FILES["imagefile"]["tmp_name"], $target_file);
+?>
+<h2>Form Data</h2>
+<pre>
+    <?php
+    print_r($_REQUEST);
+    ?>
+</pre>
+<?php
 if ($_REQUEST['submit'] == "Insert") {
-    $sql = "INSERT INTO events (name, artistID, location, eventDate, details, ticketLink) VALUES ( '$_REQUEST[name]','$_REQUEST[artistID]', '$_REQUEST[location]', '$_REQUEST[eventDate]', '$_REQUEST[details]', '$_REQUEST[ticketLink]')";
+    $sql = "INSERT INTO events (name, artistID, location, eventDate, details, ticketLink, image) VALUES ( '$_REQUEST[name]','$_REQUEST[artistID]', '$_REQUEST[location]', '$_REQUEST[eventDate]', '$_REQUEST[details]', '$_REQUEST[ticketLink]', '$target_file')";
     echo "<p>Query: " . $sql . "</p>\n<p>";
     if ($dbh->exec($sql))
         echo "Inserted $_REQUEST[name]";

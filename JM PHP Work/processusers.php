@@ -25,7 +25,7 @@ if ($_REQUEST['submit'] == "Insert") {
         if ($row[username] == $_REQUEST[username])
             $userExists = true;
 
-    $sql = sprintf("INSERT INTO users (username, password, type) VALUES ( '$_REQUEST[username]', '%s', '$_REQUEST[type]')", md5($_REQUEST[password]));
+    $sql = sprintf("INSERT INTO users (username, password, type, volunteer) VALUES ('$_REQUEST[username]', '%s', '$_REQUEST[type]', '$_REQUEST[volunteer]')", md5($_REQUEST[password]));
     echo "<p>Query: " . $sql . "</p>\n<p>";
     if (!$userExists)
         if ($dbh->exec($sql))
@@ -42,7 +42,7 @@ if ($_REQUEST['submit'] == "Insert") {
     else
         echo "Not deleted";
 } else if ($_REQUEST['submit'] == "Update") {
-    $sql = "UPDATE users SET username = '$_REQUEST[username]', type = '$_REQUEST[type]' WHERE id = '$_REQUEST[id]'";
+    $sql = "UPDATE users SET username = '$_REQUEST[username]', type = '$_REQUEST[type]', volunteer = '$_REQUEST[volunteer]' WHERE id = '$_REQUEST[id]'";
     echo "<p>Query: " . $sql . "</p>\n<p>";
     if ($dbh->exec($sql))
         echo "Updated $_REQUEST[username]";
@@ -69,6 +69,16 @@ foreach ($dbh->query($sql) as $row) {
 $dbh = null;
 ?>
 <br>
-<a href="index.php">BACK</a>
+<?php
+if ($_REQUEST['submit'] == "Insert") {
+    ?>
+    <a href="home.php">BACK</a>
+    <?php
+} else {
+    ?>
+    <a href="DBManagementPage.php">BACK</a>
+    <?php
+}
+?>
 </body>
 </html>

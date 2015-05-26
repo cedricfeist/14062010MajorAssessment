@@ -5,7 +5,7 @@ require("authenticate.php");
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Townsville Music Centre - Account</title>
+    <title>Townsville Music Centre - Manage Database</title>
     <link href="a2CSS.css" rel="stylesheet" type="text/css">
     <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.--><script>
         var __adobewebfontsappname__="dreamweaver"
@@ -50,10 +50,10 @@ require("authenticate.php");
 </div>
 <div id="wrapmain">
     <div id="wrap">
-        <div id="upcomingEventsHeader" class="headerFont2">ACCOUNT</font>
+        <div id="upcomingEventsHeader" class="headerFont2">MANAGE DATABASE</font>
         </div>
         <?php
-        include("secureuser.php");
+        include("dbmanagement.php");
         ?>
     </div>
     <div id="sponsors">

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Townsville Music Centre</title>
+<title>Townsville Music Centre - Register</title>
 <link href="a2CSS.css" rel="stylesheet" type="text/css">
 <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.--><script>
 var __adobewebfontsappname__="dreamweaver"
@@ -42,7 +42,7 @@ function MM_swapImage() { //v3.0
 </header>
 	<div id="headerLogin">
 		<div id="signIn"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image22','','button_img/SignIn2.fw.png',0)"><img src="button_img/SignIn.fw.png" width="112" height="40" id="Image22"></a></div>
-      	<div id="signUp"><a href="Register.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image23','','button_img/SignUp2.fw.png',0)"><img src="button_img/SignUp.fw.png" alt="" width="112" height="40" id="Image23"></a></div>
+      	<div id="signUp"><a href="RegisterPage.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image23','','button_img/SignUp2.fw.png',0)"><img src="button_img/SignUp.fw.png" alt="" width="112" height="40" id="Image23"></a></div>
   </div>
 	</div>
 </div>
@@ -53,7 +53,6 @@ function MM_swapImage() { //v3.0
     <?php
     include("registeruser.php");
     ?>
-</form>
 </div>  
 <div id="sponsors">
 <div id="upcomingEventsHeader">

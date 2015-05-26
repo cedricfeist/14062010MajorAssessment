@@ -1,11 +1,3 @@
-<?php session_start();
-$username = $_SESSION['username'];
-unset($_SESSION['username']);
-unset($_SESSION['msg']);
-unset($_SESSION['accountType']);
-unset($_SESSION['id']);
-session_destroy();
-?>
 <!doctype html>
 <html>
 <head>
@@ -16,7 +8,7 @@ session_destroy();
 <body>
 <h1>Logged out</h1>
 <p>You are now logged out of: <?php echo $username; ?>.</p>
-<a href="login.php">Login</a>
-<a href="index.php">Home</a>
+<a href="LoginPage.php">Login</a>
+<a href="home.php">Home</a>
 </body>
 </html>

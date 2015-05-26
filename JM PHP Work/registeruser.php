@@ -10,9 +10,6 @@ include("dbconnect.php");
 </head>
 
 <body>
-
-<h1>Register User</h1>
-
 <form id="insert" name="insert" method="post" action="processusers.php">
     <fieldset>
         <h2>New User Account:</h2>
@@ -28,7 +25,11 @@ include("dbconnect.php");
                 <td><input type="password" name="password" id="password"></td>
             </tr>
         </table>
-
+        Do you wish to become a volunteer.
+        <br>
+        <input type="radio" name="volunteer" id="volunteer" value="true">Yes
+        <br>
+        <input type="radio" name="volunteer" id="volunteer" value="false">No
         <p>
             <input type="submit" name="submit" id="submit" value="Insert">
         </p>

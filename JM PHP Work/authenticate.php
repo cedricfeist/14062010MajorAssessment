@@ -45,22 +45,21 @@ if (!isset($_SESSION['username'])) {
                 $_SESSION['msg'] = "Invalid username and/or password!";
 
                 //redirect to the login page, protecting the current page
-                header("Location: login.php");
+                header("Location: LoginPage.php");
                 exit();
             }
         } else {
             $_SESSION['msg'] = "Request not sent from the provided login page";
 
-            header("Location: login.php");
+            header("Location: LoginPage.php");
             exit();
         }
 
     } else {
         $_SESSION['msg'] = "You must log in first";
 
-        header("Location: login.php");
+        header("Location: LoginPage.php");
         exit();
     }
-
 }
 ?>

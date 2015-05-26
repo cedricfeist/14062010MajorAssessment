@@ -46,6 +46,17 @@ if ($_REQUEST['submit'] == "Insert") {
         echo "Updated $_REQUEST[name]";
     else
         echo "Not updated";
+} else if ($_REQUEST['submit'] == "Make Featured") {
+    $sql = "UPDATE artists SET featured = 'false'";
+    if ($dbh->exec($sql))
+        echo "Reset all featured fields";
+    else
+        echo "Fields not reset";
+    $sql = "UPDATE artists SET featured ='true' WHERE id = '$_REQUEST[id]'";
+    if ($dbh->exec($sql))
+        echo "Set featured to true for: $_REQUEST[id]";
+    else
+        echo "Featured not set.";
 } else {
     echo "No form submission \n";
 }
@@ -67,6 +78,6 @@ foreach ($dbh->query($sql) as $row) {
 $dbh = null;
 ?>
 <br>
-<a href="dbmanagement.php">BACK</a>
+<a href="DBManagementPage.php">BACK</a>
 </body>
 </html>

@@ -16,7 +16,7 @@ include("dbconnect.php");
 <h1>Notices Database Table Management</h1>
 
 <fieldset>
-    <form id="insert" name="insert" method="post" action="processnotices.php">
+    <form id="insert" name="insert" method="post" action="processnotices.php" enctype="multipart/form-data">
         <h2>Insert new Notice:</h2>
         <input type="hidden" name="authorID" id="authorID" value="<?php echo $_SESSION['userID'] ?>">
         <table>
@@ -28,6 +28,11 @@ include("dbconnect.php");
             <tr>
                 <td><label for="expiration">Expiration Date: </label></td>
                 <td><input type="date" name="expiration" id="expiration"></td>
+            </tr>
+
+            <tr>
+                <td><label for="imagefile">Image: </label></td>
+                <td><input type="file" name="imagefile" id="imagefile"></td>
             </tr>
         </table>
 
@@ -62,7 +67,8 @@ include("dbconnect.php");
                 <td><p>$row[authorID]</p></td>
                 <td><input type='text' name='content' value='$row[content]'/></td>
                 <td>$row[expiration]</td>
-                <td><input type='date' name='expiration'/></td>";
+                <td><input type='date' name='expiration'/></td>
+                <td><input type='text' name='image' value='$row[image]'/></td>";
                 ?>
                 <td><input type="submit" name="submit" value="Update"/></td>
                 <td><input type="submit" name="submit" value="Delete" class="delete"></td>
@@ -144,12 +150,13 @@ if ($_SESSION["accountType"] != 'free') {
                 <td><input type='text' name='name' value='$row[name]' /></td>
                 <td><input width=300 height=100 type='text' name='details' value='$row[details]'/></td>
                 <td><input type='text' name='phone' value='$row[phone]'/></td>
-                <td><input type='text' name='email' value='$row[email]'/></td>\n
-                <td><input type='text' name='website' value='$row[website]'/></td>\n
-                <td><input type='text' name='image' value='$row[image]'/></td>\n";
+                <td><input type='text' name='email' value='$row[email]'/></td>
+                <td><input type='text' name='website' value='$row[website]'/></td>
+                <td><input type='text' name='image' value='$row[image]'/></td>";
                     ?>
                     <td><input type="submit" name="submit" value="Update"/></td>
                     <td><input type="submit" name="submit" value="Delete" class="delete"></td>
+                    <td><input type="submit" name="submit" value="Make Featured"></td>
                     </tr>
                 </form>
             <?php
@@ -167,7 +174,7 @@ if ($_SESSION["accountType"] == "admin") {
     <h1>Events Database Table Management</h1>
 
     <fieldset>
-        <form id="insert" name="insert" method="post" action="processevents.php">
+        <form id="insert" name="insert" method="post" action="processevents.php" enctype="multipart/form-data">
             <h2>Insert new Event:</h2>
             <table>
                 <tr>
@@ -199,6 +206,11 @@ if ($_SESSION["accountType"] == "admin") {
                     <td><label for="ticketLink">Ticket Link: </label></td>
                     <td><input type="text" name="ticketLink" id="ticketLink"></td>
                 </tr>
+
+                <tr>
+                    <td><label for="imagefile">Image: </label></td>
+                    <td><input type="file" name="imagefile" id="imagefile"></td>
+                </tr>
             </table>
 
             <p>
@@ -218,6 +230,7 @@ if ($_SESSION["accountType"] == "admin") {
                 <th>Modify Date</th>
                 <th>Details</th>
                 <th>Ticket Sales Link</th>
+                <th>Image Filepath</th>
                 <th>Update</th>
                 <th>Delete</th>
             </tr>
@@ -226,7 +239,6 @@ if ($_SESSION["accountType"] == "admin") {
             foreach ($dbh->query($sql) as $row) {
                 ?>
                 <form id="delete" name="delete" method="post" action="processevents.php">
-
                     <?php
                     echo "<tr><input type='hidden' name='id' value='$row[id]' />
                 <td><input type='text' name='name' value='$row[name]' /></td>
@@ -235,7 +247,8 @@ if ($_SESSION["accountType"] == "admin") {
                 <td>$row[eventDate]</td>
                 <td><input type='date' name='eventDate' value='$row[eventDate]'/></td>
                 <td><input type='text' name='details' value='$row[details]'/></td>
-                <td><input type='text' name='ticketLink' value='$row[ticketLink]'/></td>";
+                <td><input type='text' name='ticketLink' value='$row[ticketLink]'/></td>
+                <td><input type='text' name='image' value='$row[image]'/></td>";
                     ?>
                     <td><input type="submit" name="submit" value="Update"/></td>
                     <td><input type="submit" name="submit" value="Delete" class="delete"></td>
@@ -256,6 +269,7 @@ if ($_SESSION["accountType"] == "admin") {
                 <th>Username</th>
                 <th>Password Hash</th>
                 <th>Type</th>
+                <th>Volunteer</th>
                 <th>Update</th>
                 <th>Delete</th>
             </tr>
@@ -277,6 +291,7 @@ if ($_SESSION["accountType"] == "admin") {
                             <option value='admin'<?php if ($row['type'] == 'admin') echo " selected='selected'";?>>Admin</option>
                         </select>
                     </td>
+                    <td><input type="radio" name="volunteer" id="volunteer" value="true"<?php if ($row['volunteer'] == 'true') echo " checked";?>>Yes <input type="radio" name="volunteer" id="volunteer" value="false"<?php if ($row['volunteer'] == 'false') echo " checked";?>>No</td>
                     <td><input type="submit" name="submit" value="Update"/></td>
                     <td><input type="submit" name="submit" value="Delete" class="delete"></td>
                     </tr>
@@ -289,10 +304,8 @@ if ($_SESSION["accountType"] == "admin") {
 <?php
 }
 ?>
-
-
 <nav>
-    <a href="secureUserPage.php">Return to account page</a>
+    <a href="SecureUserPage.php">Return to account page</a>
 </nav>
 
 </body>

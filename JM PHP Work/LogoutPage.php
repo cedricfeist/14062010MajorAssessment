@@ -1,11 +1,16 @@
-<?php
-require("authenticate.php");
+<?php session_start();
+$username = $_SESSION['username'];
+unset($_SESSION['username']);
+unset($_SESSION['msg']);
+unset($_SESSION['accountType']);
+unset($_SESSION['id']);
+session_destroy();
 ?>
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Townsville Music Centre - Account</title>
+    <title>Townsville Music Centre - Logout</title>
     <link href="a2CSS.css" rel="stylesheet" type="text/css">
     <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.--><script>
         var __adobewebfontsappname__="dreamweaver"
@@ -36,11 +41,11 @@ require("authenticate.php");
 <body>
 <div id="headermain">
     <header>
-        <div id="logo"> <a href="Home.html"><img src="TCMC_Images_Docs/SiteImages/TCMC150100.jpg" width="150" height="100"/> </a></div>
+        <div id="logo"> <a href="HomePage.php"><img src="TCMC_Images_Docs/SiteImages/TCMC150100.jpg" width="150" height="100"/> </a></div>
         <div id="nav"><a href="Events.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image54','','button_img/events2.fw.png',0)"><img src="button_img/events.fw.png" alt="" width="120" height="30" id="Image54"></a></div>
-        <div id="nav"><a href="Artists.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image20','','button_img/artists2.fw.png',0)"><img src="button_img/artists.fw.png" alt="" width="120" height="30" id="Image20"></a></div>
+        <div id="nav"><a href="ArtistsPage.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image20','','button_img/artists2.fw.png',0)"><img src="button_img/artists.fw.png" alt="" width="120" height="30" id="Image20"></a></div>
         <div id="nav"><a href="About_us.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image30','','button_img/aboutus2.fw.png',0)"><img src="button_img/aboutus.fw.png" alt="" width="120" height="30" id="Image30"></a></div>
-        <div id="nav1"><a href="Bulletin_Board.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image31','','button_img/bulletin2.fw.png',0)"><img src="button_img/bulletin.fw.png" alt="" width="120" height="30" id="Image31"></a></div>
+        <div id="nav1"><a href="BulletinBoard.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image31','','button_img/bulletin2.fw.png',0)"><img src="button_img/bulletin.fw.png" alt="" width="120" height="30" id="Image31"></a></div>
     </header>
     <div id="headerLogin">
         <div id="signIn"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image22','','button_img/SignIn2.fw.png',0)"><img src="button_img/SignIn.fw.png" width="112" height="40" id="Image22"></a></div>
@@ -50,10 +55,9 @@ require("authenticate.php");
 </div>
 <div id="wrapmain">
     <div id="wrap">
-        <div id="upcomingEventsHeader" class="headerFont2">ACCOUNT</font>
-        </div>
+        <div id="upcomingEventsHeader" class="headerFont2">LOGOUT</div>
         <?php
-        include("secureuser.php");
+        include("logout.php");
         ?>
     </div>
     <div id="sponsors">
@@ -73,9 +77,7 @@ require("authenticate.php");
             </div>
             The Gambling Community Benefit Fund has assisted us to obtain office equipment and sound and lighting equipment for our productions
         </div>
-
     </div>
-
 </div>
 <div id="footer"><font size="-1">Contact Details: - <br>
         Phone: 07 4724 0286<br>

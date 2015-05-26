@@ -1,11 +1,8 @@
-<?php
-require("authenticate.php");
-?>
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Townsville Music Centre - Account</title>
+    <title>Townsville Music Centre - Login</title>
     <link href="a2CSS.css" rel="stylesheet" type="text/css">
     <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.--><script>
         var __adobewebfontsappname__="dreamweaver"
@@ -50,10 +47,9 @@ require("authenticate.php");
 </div>
 <div id="wrapmain">
     <div id="wrap">
-        <div id="upcomingEventsHeader" class="headerFont2">ACCOUNT</font>
-        </div>
+        <div id="upcomingEventsHeader" class="headerFont2">LOGIN</div>
         <?php
-        include("secureuser.php");
+        include("login.php");
         ?>
     </div>
     <div id="sponsors">
@@ -73,9 +69,7 @@ require("authenticate.php");
             </div>
             The Gambling Community Benefit Fund has assisted us to obtain office equipment and sound and lighting equipment for our productions
         </div>
-
     </div>
-
 </div>
 <div id="footer"><font size="-1">Contact Details: - <br>
         Phone: 07 4724 0286<br>
