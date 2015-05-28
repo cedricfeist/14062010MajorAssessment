@@ -1,11 +1,17 @@
-<?php
-require("authenticate.php");
+<?php session_start();
+unset($_SESSION['username']);
+unset($_SESSION['msg']);
+unset($_SESSION['accountType']);
+unset($_SESSION['id']);
+session_destroy();
+include("dbconnect.php");
 ?>
+
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Townsville Music Centre - Manage Database</title>
+    <title>Townsville Music Centre</title><!--Rename this for each page-->
     <link href="a2CSS.css" rel="stylesheet" type="text/css">
     <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
     <script>
@@ -57,13 +63,15 @@ require("authenticate.php");
 </head>
 
 <body>
+
 <div id="headermain">
     <header>
         <div id="logo"><a href="HomePage.php"><img src="TCMC_Images_Docs/SiteImages/TCMC150100.jpg" width="150"
-                                                height="100"/> </a></div>
+                                                   height="100"/> </a></div>
+
         <div id="nav"><a href="EventsPage.php" onMouseOut="MM_swapImgRestore()"
-                         onMouseOver="MM_swapImage('Image54','','button_img/events2.fw.png',0)"><img
-                    src="button_img/events.fw.png" alt="" width="120" height="30" id="Image54"></a></div>
+                         onMouseOver="MM_swapImage('Image55','','button_img/events2.fw.png',0)"><img
+                    src="button_img/events.fw.png" alt="" width="120" height="30" id="Image55"></a></div>
         <div id="nav"><a href="ArtistsPage.php" onMouseOut="MM_swapImgRestore()"
                          onMouseOver="MM_swapImage('Image20','','button_img/artists2.fw.png',0)"><img
                     src="button_img/artists.fw.png" alt="" width="120" height="30" id="Image20"></a></div>
@@ -75,28 +83,30 @@ require("authenticate.php");
                     src="button_img/bulletin.fw.png" alt="" width="120" height="30" id="Image31"></a></div>
     </header>
     <div id="headerLogin">
-<!--        <div id="signIn"><a href="LoginPage.php" onMouseOut="MM_swapImgRestore()"-->
-<!--                            onMouseOver="MM_swapImage('Image22','','button_img/SignIn2.fw.png',0)"><img-->
-<!--                    src="button_img/SignIn.fw.png" width="112" height="40" id="Image22"></a></div>-->
+        <div id="signIn"><a href="LoginPage.php" onMouseOut="MM_swapImgRestore()"
+                            onMouseOver="MM_swapImage('Image22','','button_img/SignIn2.fw.png',0)"><img
+                    src="button_img/SignIn.fw.png" width="112" height="40" id="Image22"></a></div>
         <div id="signUp"><a href="RegisterPage.php" onMouseOut="MM_swapImgRestore()"
                             onMouseOver="MM_swapImage('Image23','','button_img/SignUp2.fw.png',0)"><img
                     src="button_img/SignUp.fw.png" alt="" width="112" height="40" id="Image23"></a></div>
     </div>
 </div>
-</div>
+
+
 <div id="wrapmain">
     <div id="wrap">
-        <div id="upcomingEventsHeader" class="headerFont2">MANAGE DATABASE</font>
-        </div>
+
+        <div id="upcomingEventsHeader" class="headerFont2">ARTISTS INFORMATION</div>
+
         <?php
-        if (isset($_SESSION['processMsg'])) {
-            echo "<h2><b>" . $_SESSION['processMsg'] . "</b></h2>";
-            unset($_SESSION['processMsg']);
-        }
-        include("dbmanagement.php");
+        include("artistdetails.php");
         ?>
+
+
     </div>
-    <div id="sponsors">
+    <!--Wrap END-->
+
+    <div id="sponsors"><!--Sponsors should always be at the end just before the "mainWrap" NOT "Warp"-->
         <div id="upcomingEventsHeader">
         </div>
 
@@ -117,7 +127,11 @@ require("authenticate.php");
             The Gambling Community Benefit Fund has assisted us to obtain office equipment and sound and lighting
             equipment for our productions
         </div>
+
     </div>
+    <!--Sponsor End-->
+
 </div>
+<!--MainWrap Div END-->
 </body>
 </html>

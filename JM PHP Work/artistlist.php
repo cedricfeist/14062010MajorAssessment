@@ -10,20 +10,21 @@ include("dbconnect.php");
 </head>
 
 <body>
-        <div>
-            <h1>All Artists</h1>
-            <ul>
-            <?php
-            $sql = "SELECT * FROM  artists";
-            foreach ($dbh->query($sql) as $row) {
-                printf("<li><a href = \"artistinfo.php?tag=%s\">%s</a></li>\n", $row[id], $row[name]);
-            }
-            $dbh = null;
-            ?>
-            </ul>
-        </div>
+<div>
 
-        <br/><a href="index.php">Return to homepage</a>
+
+    <table id="artiststable">
+        <?php
+        $sql = "SELECT * FROM  artists";
+        foreach ($dbh->query($sql) as $row) {
+            printf("<tr><td><a href = \"ArtistsInfoPage.php?tag=%s\">%s</a></td><td>%s</td><td><img src=\"%s\"></td></tr>\n  ", $row[id], $row[name], $row[description], $row[image]);
+
+        }
+        $dbh = null;
+        ?>
+    </table>
+</div>
+
 
 </body>
 </html>

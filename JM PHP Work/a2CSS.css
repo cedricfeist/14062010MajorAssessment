@@ -328,3 +328,78 @@ body {
 	margin-right: 0px;
 	margin-bottom: 0px;
 }
+#artiststable {
+    width: 100%;
+    align-content: center;
+    text-align: center;
+}
+#artiststable img {
+ width:400px;
+}
+#artiststable td {
+    width: 33%
+}
+tr:nth-child(even) td {background: #f1f1f1}
+
+tr:nth-child(odd) td {background: #fefefe }
+table {
+    width: 100%;
+    height: 300px;
+    border-collapse: collapse;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    color: #333;
+    border-spacing: 0;
+}
+table td{
+    padding: 5px;
+}
+table a {
+    color: #206BA4;
+}
+#noticestable #one {
+    border-right: 1px;
+    width: 60%;
+}
+#noticestable #two {
+    width: 20%;
+}
+#noticestable #three {
+    width: 19%;
+}
+#noticestable img{
+    float: right;
+    width: 200px;
+    padding: 5px;
+}
+#detailstable{
+    width: 100%;
+}
+#detailstable #left{
+    width: 60%;
+}
+#detailstable #right{
+    width: 39%;
+}
+#detailstable img{
+    width: 500px;
+}
+#eventstable img{
+    width: 200px;
+}
+#noticesrow { 
+    height: 10px;
+}
+div {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+#managementTable {
+    height: auto;
+}
+#managementTable th {
+    height: auto;
+}
+#loginTD {
+    height: auto;
+    width: auto;
+}
+    

@@ -19,10 +19,15 @@ include("dbconnect.php");
     <form id="insert" name="insert" method="post" action="processnotices.php" enctype="multipart/form-data">
         <h2>Insert new Notice:</h2>
         <input type="hidden" name="authorID" id="authorID" value="<?php echo $_SESSION['userID'] ?>">
-        <table>
+        <table id="managementTable">
             <tr>
                 <td><label for="content">Content: </label></td>
                 <td><input type="text" name="content" id="content"></td>
+            </tr>
+
+            <tr>
+                <td><label for="contact">Contact Details: </label></td>
+                <td><input type="text" name="contact" id="contact"></td>
             </tr>
 
             <tr>
@@ -43,13 +48,15 @@ include("dbconnect.php");
 </fieldset>
 
 <fieldset>
+<!--Notices will not delete themselves, but they will not display after the expiry date.-->
     <h2>Notices: </h2>
-    <table>
+    <table id="managementTable">
         <tr>
             <th>AuthorID</th>
             <th>Content</th>
-            <th>Expiration Date</th>
-            <th>Modify Expiry Date</th>
+            <th>Contact Details</th>
+            <th>Expiry Date</th>
+            <th>Image Filepath</th>
             <th>Update</th>
             <th>Delete</th>
         </tr>
@@ -66,8 +73,8 @@ include("dbconnect.php");
                 echo "<tr><input type='hidden' name='id' value='$row[id]' />
                 <td><p>$row[authorID]</p></td>
                 <td><input type='text' name='content' value='$row[content]'/></td>
-                <td>$row[expiration]</td>
-                <td><input type='date' name='expiration'/></td>
+                <td><input type='text' name='contact' value='$row[contactdetails]'/></td>
+                <td><input type='date' name='expiration' value='$row[expiration]'/></td>
                 <td><input type='text' name='image' value='$row[image]'/></td>";
                 ?>
                 <td><input type="submit" name="submit" value="Update"/></td>
@@ -88,7 +95,7 @@ if ($_SESSION["accountType"] != 'free') {
     <fieldset>
         <form id="insert" name="insert" method="post" action="processartists.php" enctype="multipart/form-data">
             <h2>Insert new Artist:</h2>
-            <table>
+            <table id="managementTable">
                 <tr>
                     <td><label for="name">Name: </label></td>
                     <td><input type="text" name="name" id="name"></td>
@@ -112,6 +119,11 @@ if ($_SESSION["accountType"] != 'free') {
                 <tr>
                     <td><label for="website">Website: </label></td>
                     <td><input type="text" name="website" id="website"></td>
+                </tr> 
+                
+                <tr>
+                    <td><label for="website">Genres(separated by , ): </label></td>
+                    <td><input type="text" name="genres" id="genres"></td>
                 </tr>
 
                 <tr>
@@ -128,7 +140,7 @@ if ($_SESSION["accountType"] != 'free') {
 
     <fieldset>
         <h2>Artists: </h2>
-        <table>
+        <table id="managementTable">
             <tr>
                 <th>Name</th>
                 <th>Details</th>
@@ -138,6 +150,7 @@ if ($_SESSION["accountType"] != 'free') {
                 <th>Image Filepath</th>
                 <th>Update</th>
                 <th>Delete</th>
+                <th>Make Featured</th>
             </tr>
             <?php
             $sql = "SELECT * FROM artists";
@@ -172,11 +185,11 @@ if ($_SESSION["accountType"] != 'free') {
 if ($_SESSION["accountType"] == "admin") {
     ?>
     <h1>Events Database Table Management</h1>
-
+<!--Events will not delete themselves, but they will not display after the expiry date.-->  
     <fieldset>
         <form id="insert" name="insert" method="post" action="processevents.php" enctype="multipart/form-data">
             <h2>Insert new Event:</h2>
-            <table>
+            <table id="managementTable">
                 <tr>
                     <td><label for="name">Name: </label></td>
                     <td><input type="text" name="name" id="name"></td>
@@ -221,13 +234,12 @@ if ($_SESSION["accountType"] == "admin") {
 
     <fieldset>
         <h2>Events: </h2>
-        <table>
+        <table id="managementTable">
             <tr>
                 <th>Name</th>
                 <th>ArtistID</th>
                 <th>Location</th>
                 <th>Date</th>
-                <th>Modify Date</th>
                 <th>Details</th>
                 <th>Ticket Sales Link</th>
                 <th>Image Filepath</th>
@@ -244,7 +256,6 @@ if ($_SESSION["accountType"] == "admin") {
                 <td><input type='text' name='name' value='$row[name]' /></td>
                 <td><input type='text' name='artistID' value='$row[artistID]' /></td>
                 <td><input type='text' name='location' value='$row[location]'/></td>
-                <td>$row[eventDate]</td>
                 <td><input type='date' name='eventDate' value='$row[eventDate]'/></td>
                 <td><input type='text' name='details' value='$row[details]'/></td>
                 <td><input type='text' name='ticketLink' value='$row[ticketLink]'/></td>
@@ -264,7 +275,7 @@ if ($_SESSION["accountType"] == "admin") {
     <h1>Manage Users</h1>
     <fieldset>
         <h2>Users: </h2>
-        <table>
+        <table id="managementTable">
             <tr>
                 <th>Username</th>
                 <th>Password Hash</th>
@@ -303,10 +314,13 @@ if ($_SESSION["accountType"] == "admin") {
     </fieldset>
 <?php
 }
+if ($_SESSION["accountType"] == 'free') {
+    ?>
+    <nav>
+        <a href="SecureUserPage.php">Return to account page</a>
+    </nav>
+<?php
+}
 ?>
-<nav>
-    <a href="SecureUserPage.php">Return to account page</a>
-</nav>
-
 </body>
 </html>

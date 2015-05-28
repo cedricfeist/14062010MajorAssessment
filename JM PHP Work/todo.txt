@@ -15,8 +15,6 @@ CSS and links for the login/dbmanagement/user stuff.
 
 Get rid of contact details on the footer of each page.
 
-First years need to do feeder page.
-
 Notes:
 Login + signup could be on the same page.
 Eventslist needs to show the artist, and the buy tickets link should be made an actual link (done).

@@ -1,4 +1,5 @@
 <?php
+session_start();
 $debugOn = true;
 error_reporting(-1);
 include("dbconnect.php");
@@ -28,26 +29,36 @@ move_uploaded_file($_FILES["imagefile"]["tmp_name"], $target_file);
 if ($_REQUEST['submit'] == "Insert") {
     $sql = "INSERT INTO events (name, artistID, location, eventDate, details, ticketLink, image) VALUES ( '$_REQUEST[name]','$_REQUEST[artistID]', '$_REQUEST[location]', '$_REQUEST[eventDate]', '$_REQUEST[details]', '$_REQUEST[ticketLink]', '$target_file')";
     echo "<p>Query: " . $sql . "</p>\n<p>";
-    if ($dbh->exec($sql))
+    if ($dbh->exec($sql)) {
         echo "Inserted $_REQUEST[name]";
-    else
+        $_SESSION['processMsg'] = "Event $_REQUEST[name] inserted";
+    } else {
         echo "Not inserted";
+        $_SESSION['processMsg'] = "Event $_REQUEST[name] not inserted";
+    }
 } else if ($_REQUEST['submit'] == "Delete") {
     $sql = "DELETE FROM events WHERE id = '$_REQUEST[id]'";
     echo "<p>Query: " . $sql . "</p>\n<p>";
-    if ($dbh->exec($sql))
+    if ($dbh->exec($sql)) {
         echo "Deleted $_REQUEST[name]";
-    else
+        $_SESSION['processMsg'] = "Event $_REQUEST[name] deleted";
+    } else {
         echo "Not deleted";
+        $_SESSION['processMsg'] = "Event $_REQUEST[name] not deleted";
+    }
 } else if ($_REQUEST['submit'] == "Update") {
     $sql = "UPDATE events SET name = '$_REQUEST[name]', artistID = '$_REQUEST[artistID]', location = '$_REQUEST[location]', eventDate = '$_REQUEST[eventDate]', details = '$_REQUEST[details]', ticketLink = '$_REQUEST[ticketLink]' WHERE id = '$_REQUEST[id]'";
     echo "<p>Query: " . $sql . "</p>\n<p>";
-    if ($dbh->exec($sql))
+    if ($dbh->exec($sql)) {
         echo "Updated $_REQUEST[name]";
-    else
+        $_SESSION['processMsg'] = "Event $_REQUEST[name] updated";
+    } else {
         echo "Not updated";
+        $_SESSION['processMsg'] = "Event $_REQUEST[name] not updated";
+    }
 } else {
     echo "No form submission \n";
+    $_SESSION['processMsg'] = "No valid form submitted";
 }
 echo "</p>\n";
 echo "<h2>Current Events</h2>\n";
@@ -67,6 +78,9 @@ foreach ($dbh->query($sql) as $row) {
 $dbh = null;
 ?>
 <br>
-<a href="dbmanagement.php">BACK</a>
+    <?php
+    header("Location: DBManagementPage.php");
+    ?>
+<a href="DBManagementPage.php">BACK</a>
 </body>
 </html>

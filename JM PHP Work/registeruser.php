@@ -25,7 +25,7 @@ include("dbconnect.php");
                 <td><input type="password" name="password" id="password"></td>
             </tr>
         </table>
-        Do you wish to become a volunteer.
+        Do you wish to become a volunteer?
         <br>
         <input type="radio" name="volunteer" id="volunteer" value="true">Yes
         <br>
@@ -35,7 +35,5 @@ include("dbconnect.php");
         </p>
     </fieldset>
 </form>
-
-<a href="index.php">Home</a>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 $debugOn = true;
 error_reporting(-1);
 include("dbconnect.php");
@@ -28,28 +29,38 @@ if ($_REQUEST['submit'] == "Insert") {
     $sql = sprintf("INSERT INTO users (username, password, type, volunteer) VALUES ('$_REQUEST[username]', '%s', '$_REQUEST[type]', '$_REQUEST[volunteer]')", md5($_REQUEST[password]));
     echo "<p>Query: " . $sql . "</p>\n<p>";
     if (!$userExists)
-        if ($dbh->exec($sql))
+        if ($dbh->exec($sql)) {
             echo "Inserted $_REQUEST[username]";
-        else
+            $_SESSION['processMsg'] = "User $_REQUEST[username] inserted";
+        } else {
             echo "Not inserted";
+            $_SESSION['processMsg'] = "User $_REQUEST[username] not inserted";
+        }
     else
         echo "User not inserted: Username already exists";
 } else if ($_REQUEST['submit'] == "Delete") {
     $sql = "DELETE FROM users WHERE id = '$_REQUEST[id]'";
     echo "<p>Query: " . $sql . "</p>\n<p>";
-    if ($dbh->exec($sql))
+    if ($dbh->exec($sql)) {
         echo "Deleted $_REQUEST[username]";
-    else
+        $_SESSION['processMsg'] = "Deleted $_REQUEST[username]";
+    } else {
         echo "Not deleted";
+        $_SESSION['processMsg'] = "$_REQUEST[username] not deleted";
+    }
 } else if ($_REQUEST['submit'] == "Update") {
     $sql = "UPDATE users SET username = '$_REQUEST[username]', type = '$_REQUEST[type]', volunteer = '$_REQUEST[volunteer]' WHERE id = '$_REQUEST[id]'";
     echo "<p>Query: " . $sql . "</p>\n<p>";
-    if ($dbh->exec($sql))
+    if ($dbh->exec($sql)) {
         echo "Updated $_REQUEST[username]";
-    else
+        $_SESSION[processMsg] = "Updated $_REQUEST[username]";
+    } else {
         echo "Not updated";
+        $_SESSION[processMsg] = "$_REQUEST[username] not updated";
+    }
 } else {
     echo "No form submission \n";
+    $_SESSION['processMsg'] = "No valid form submitted";
 }
 echo "</p>\n";
 echo "<h2>Current Users</h2>\n";
@@ -72,13 +83,19 @@ $dbh = null;
 <?php
 if ($_REQUEST['submit'] == "Insert") {
     ?>
-    <a href="home.php">BACK</a>
+    <a href="LoginPage.php">BACK</a>
     <?php
+    header("Location: RegisterPage.php");
+
 } else {
     ?>
     <a href="DBManagementPage.php">BACK</a>
     <?php
+    header("Location: DBManagementPage.php");
+
 }
+
+    
 ?>
 </body>
 </html>

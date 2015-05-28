@@ -1,11 +1,17 @@
-<?php
-require("authenticate.php");
+<?php session_start();
+unset($_SESSION['username']);
+unset($_SESSION['msg']);
+unset($_SESSION['accountType']);
+unset($_SESSION['id']);
+session_destroy();
+include("dbconnect.php");
 ?>
+
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Townsville Music Centre - Manage Database</title>
+    <title>Townsville Music Centre</title>
     <link href="a2CSS.css" rel="stylesheet" type="text/css">
     <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
     <script>
@@ -56,51 +62,109 @@ require("authenticate.php");
             type="text/javascript"></script>
 </head>
 
-<body>
+<body onLoad="MM_preloadImages('SignUp2.fw.png','ViewMore2.fw.png')">
 <div id="headermain">
     <header>
         <div id="logo"><a href="HomePage.php"><img src="TCMC_Images_Docs/SiteImages/TCMC150100.jpg" width="150"
-                                                height="100"/> </a></div>
+                                                   height="100"/> </a></div>
+
         <div id="nav"><a href="EventsPage.php" onMouseOut="MM_swapImgRestore()"
-                         onMouseOver="MM_swapImage('Image54','','button_img/events2.fw.png',0)"><img
-                    src="button_img/events.fw.png" alt="" width="120" height="30" id="Image54"></a></div>
+                         onMouseOver="MM_swapImage('Image19','','button_img/events2.fw.png',0)"><img
+                    src="button_img/events.fw.png" alt="" width="120" height="30" id="Image19"></a></div>
+
         <div id="nav"><a href="ArtistsPage.php" onMouseOut="MM_swapImgRestore()"
                          onMouseOver="MM_swapImage('Image20','','button_img/artists2.fw.png',0)"><img
                     src="button_img/artists.fw.png" alt="" width="120" height="30" id="Image20"></a></div>
+
         <div id="nav"><a href="AboutUsPage.html" onMouseOut="MM_swapImgRestore()"
                          onMouseOver="MM_swapImage('Image30','','button_img/aboutus2.fw.png',0)"><img
                     src="button_img/aboutus.fw.png" alt="" width="120" height="30" id="Image30"></a></div>
+
         <div id="nav1"><a href="BulletinboardPage.php" onMouseOut="MM_swapImgRestore()"
                           onMouseOver="MM_swapImage('Image31','','button_img/bulletin2.fw.png',0)"><img
                     src="button_img/bulletin.fw.png" alt="" width="120" height="30" id="Image31"></a></div>
     </header>
+
+
     <div id="headerLogin">
-<!--        <div id="signIn"><a href="LoginPage.php" onMouseOut="MM_swapImgRestore()"-->
-<!--                            onMouseOver="MM_swapImage('Image22','','button_img/SignIn2.fw.png',0)"><img-->
-<!--                    src="button_img/SignIn.fw.png" width="112" height="40" id="Image22"></a></div>-->
+        <div id="signIn"><a href="LoginPage.php" onMouseOut="MM_swapImgRestore()"
+                            onMouseOver="MM_swapImage('Image22','','button_img/SignIn2.fw.png',0)"><img
+                    src="button_img/SignIn.fw.png" width="112" height="40" id="Image22"></a></div>
         <div id="signUp"><a href="RegisterPage.php" onMouseOut="MM_swapImgRestore()"
                             onMouseOver="MM_swapImage('Image23','','button_img/SignUp2.fw.png',0)"><img
                     src="button_img/SignUp.fw.png" alt="" width="112" height="40" id="Image23"></a></div>
     </div>
-</div>
+
+
 </div>
 <div id="wrapmain">
     <div id="wrap">
-        <div id="upcomingEventsHeader" class="headerFont2">MANAGE DATABASE</font>
+        <div id="upcomingEventsHeader" class="headerFont"><strong>FEATURED UPCOMING EVENT
+            </strong></div>
+        <div id="imgUpcomingEventText"><img src="TCMC_Images_Docs/events/Harbourside01.jpg" width="250" height="259"
+                                            alt=""/>
         </div>
-        <?php
-        if (isset($_SESSION['processMsg'])) {
-            echo "<h2><b>" . $_SESSION['processMsg'] . "</b></h2>";
-            unset($_SESSION['processMsg']);
-        }
-        include("dbmanagement.php");
-        ?>
+
+        <div id="sponsorsHeader" class="headerFont3">HARBOURSIDE DUO - DREAM SERENADE</div>
+        <div class="textFont" id="upcomingEvents">
+            Music of Debussy, Ravel, Saint- Saens, Sibelius and others.
+            <br><br><br>March into Sommarhagen!
+            Dance the Habanera with the Girl with Flaxen Hair! <br>
+            Be seduced by Thais! <br>
+            Or just relax and let the music wash over you.<br>
+            <br><br><br>2pm Sunday 17 May at C2 (Townsville Civic Theatre)
+        </div>
+
+        <div id="optionButtons">
+            <div id="btnBuyTicket"><a href="#" onMouseOut="MM_swapImgRestore()"
+                                      onMouseOver="MM_swapImage('Image7','','button_img/buyTickets2.fw.png',0)"><img
+                        src="button_img/buyTickets.fw.png" alt="Buy Tickets" width="112" height="40" id="Image7"></a>
+            </div>
+            <div id="btnViewMore"><a href="EventsPage.php" onMouseOut="MM_swapImgRestore()"
+                                     onMouseOver="MM_swapImage('Image8','','button_img/ViewMore2.fw.png',1)"><img
+                        src="button_img/ViewMore.fw.png" alt="View More" width="112" height="40" id="Image8"></a></div>
+        </div>
+
+        <div id="upcomingEventsHeader" class="headerFont"><strong>FEATURED ARTIST
+            </strong></div>
+
+        <table>
+            <?php
+            $sql = "SELECT * FROM  artists WHERE featured = 'true'";
+            foreach ($dbh->query($sql) as $row) {
+                ?>
+                <tr>
+                    <td>
+                        <div id="imgUpcomingEventText">
+                            <img src='<?php echo "$row[image]"; ?>' style="width:250px;padding:5px;">
+                        </div>
+                    </td>
+                    <td>
+                        <div id="sponsorsHeader" class="headerFont3">
+                            <p><?php echo "$row[name]"; ?></p>
+                        </div>
+                        <div class="textFont" id="upcomingEvents">
+                            <p>
+                                <?php echo "$row[description]"; ?><br>
+                                <br>
+                                <a href="ArtistsInfoPage.php?tag=<?php echo "$row[id]"; ?>">View more</a>
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+
+            <?php
+            }
+            ?>
+        </table>
     </div>
+
+
     <div id="sponsors">
         <div id="upcomingEventsHeader">
         </div>
 
-        <div id="sponsorsTxt">
+        <div class="textFont" id="sponsorsTxt">
             <div id="sponsorsImg">
                 <img src="TCMC_Images_Docs/SiteImages/TCC83100.png">
             </div>
@@ -110,14 +174,16 @@ require("authenticate.php");
             The Council also assist with the performance venues for our concerts and events.
         </div>
 
-        <div id="sponsorsTxt">
+        <div class="textFont" id="sponsorsTxt">
             <div id="sponsorsImg">
                 <img src="TCMC_Images_Docs/SiteImages/GCBF80_100px.png" width="80" height="100" alt=""/>
             </div>
             The Gambling Community Benefit Fund has assisted us to obtain office equipment and sound and lighting
             equipment for our productions
         </div>
+
     </div>
+
 </div>
 </body>
 </html>

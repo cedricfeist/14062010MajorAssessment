@@ -31,8 +31,7 @@ if (!isset($_SESSION['username'])) {
         </form>
     </fieldset>
 <?php }
-if (isset($_SESSION['username'])) echo '<a href="logout.php">Logout</a>';
+if (isset($_SESSION['username'])) echo '<a href="LogoutPage.php">Logout</a>';
 ?>
-<a href="home.php">Home</a>
 </body>
 </html>

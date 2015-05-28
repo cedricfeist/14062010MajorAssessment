@@ -1,6 +1,6 @@
 <?php
 try {
-    $dbh = new PDO("sqlite:sitedb.sqlite");
+    $dbh = new PDO("sqlite:database/sitedb.sqlite"); 
 }
 catch(PDOException $e)
 {

@@ -1,11 +1,17 @@
-<?php
-require("authenticate.php");
+<?php session_start();
+unset($_SESSION['username']);
+unset($_SESSION['msg']);
+unset($_SESSION['accountType']);
+unset($_SESSION['id']);
+session_destroy();
+include("dbconnect.php");
 ?>
+
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Townsville Music Centre - Manage Database</title>
+    <title>Townsville Music Centre</title><!--Rename this for each page-->
     <link href="a2CSS.css" rel="stylesheet" type="text/css">
     <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
     <script>
@@ -57,13 +63,15 @@ require("authenticate.php");
 </head>
 
 <body>
+
 <div id="headermain">
     <header>
         <div id="logo"><a href="HomePage.php"><img src="TCMC_Images_Docs/SiteImages/TCMC150100.jpg" width="150"
-                                                height="100"/> </a></div>
+                                                   height="100"/> </a></div>
+
         <div id="nav"><a href="EventsPage.php" onMouseOut="MM_swapImgRestore()"
-                         onMouseOver="MM_swapImage('Image54','','button_img/events2.fw.png',0)"><img
-                    src="button_img/events.fw.png" alt="" width="120" height="30" id="Image54"></a></div>
+                         onMouseOver="MM_swapImage('Image19','','button_img/events2.fw.png',0)"><img
+                    src="button_img/events.fw.png" alt="" width="120" height="30" id="Image19"></a></div>
         <div id="nav"><a href="ArtistsPage.php" onMouseOut="MM_swapImgRestore()"
                          onMouseOver="MM_swapImage('Image20','','button_img/artists2.fw.png',0)"><img
                     src="button_img/artists.fw.png" alt="" width="120" height="30" id="Image20"></a></div>
@@ -75,28 +83,60 @@ require("authenticate.php");
                     src="button_img/bulletin.fw.png" alt="" width="120" height="30" id="Image31"></a></div>
     </header>
     <div id="headerLogin">
-<!--        <div id="signIn"><a href="LoginPage.php" onMouseOut="MM_swapImgRestore()"-->
-<!--                            onMouseOver="MM_swapImage('Image22','','button_img/SignIn2.fw.png',0)"><img-->
-<!--                    src="button_img/SignIn.fw.png" width="112" height="40" id="Image22"></a></div>-->
+        <div id="signIn"><a href="LoginPage.php" onMouseOut="MM_swapImgRestore()"
+                            onMouseOver="MM_swapImage('Image22','','button_img/SignIn2.fw.png',0)"><img
+                    src="button_img/SignIn.fw.png" width="112" height="40" id="Image22"></a></div>
         <div id="signUp"><a href="RegisterPage.php" onMouseOut="MM_swapImgRestore()"
                             onMouseOver="MM_swapImage('Image23','','button_img/SignUp2.fw.png',0)"><img
                     src="button_img/SignUp.fw.png" alt="" width="112" height="40" id="Image23"></a></div>
     </div>
 </div>
-</div>
-<div id="wrapmain">
-    <div id="wrap">
-        <div id="upcomingEventsHeader" class="headerFont2">MANAGE DATABASE</font>
+
+
+<div id="wrapmain"><!--Is the Dark green background-->
+    <div id="wrap"><!--Is the white box that holds all info inside-->
+
+        <div id="upcomingEventsHeader" class="headerFont2"> 
+        <form>
+            ARTISTS - Genres
+        <select name='type'>
+            <?php
+                $sql = "SELECT DISTINCT genre FROM  genres";
+                foreach ($dbh->query($sql) as $row) {
+                    echo "<option value='$row[genre]'";
+                    
+                    if ($_GET[type] == $row[genre]){
+                        echo "selected='selected'";
+                    }
+                        
+                        echo ">$row[genre]</option>";
+                }
+            ?>
+            </select>
+            <input type='submit' value="Filter">
+            </form>
+        
         </div>
+        <table id="artiststable">
         <?php
-        if (isset($_SESSION['processMsg'])) {
-            echo "<h2><b>" . $_SESSION['processMsg'] . "</b></h2>";
-            unset($_SESSION['processMsg']);
+            $sql = "SELECT artistid FROM genres WHERE genre = '$_GET[type]'";
+            
+            foreach ($dbh->query($sql) as $row) {
+                $sql2 = "SELECT * FROM artists WHERE id='$row[artistid]'";
+                foreach ($dbh->query($sql2) as $row) {
+                    printf("<tr><td><a href = \"ArtistsInfoPage.php?tag=%s\">%s</a></td>                            <td>%s</td><td><img src=\"%s\"></td></tr>\n  ", $row[id],                                   $row[name], $row[description], $row[image]);
+
         }
-        include("dbmanagement.php");
+            }
+
+
         ?>
+        </table>
+
     </div>
-    <div id="sponsors">
+    <!--Wrap END-->
+
+    <div id="sponsors"><!--Sponsors should always be at the end just before the "mainWrap" NOT "Warp"-->
         <div id="upcomingEventsHeader">
         </div>
 
@@ -117,7 +157,11 @@ require("authenticate.php");
             The Gambling Community Benefit Fund has assisted us to obtain office equipment and sound and lighting
             equipment for our productions
         </div>
+
     </div>
+    <!--Sponsor End-->
+
 </div>
+<!--MainWrap Div END-->
 </body>
 </html>

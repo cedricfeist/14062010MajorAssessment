@@ -8,7 +8,5 @@
 <body>
 <h1>Logged out</h1>
 <p>You are now logged out of: <?php echo $username; ?>.</p>
-<a href="LoginPage.php">Login</a>
-<a href="home.php">Home</a>
 </body>
 </html>

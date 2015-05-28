@@ -1,4 +1,5 @@
 <?php
+session_start();
 $debugOn = true;
 error_reporting(-1);
 include("dbconnect.php");
@@ -25,28 +26,38 @@ move_uploaded_file($_FILES["imagefile"]["tmp_name"], $target_file);
 </pre>
 <?php
 if ($_REQUEST['submit'] == "Insert") {
-    $sql = "INSERT INTO notices (authorID, content, expiration, image) VALUES ( '$_REQUEST[authorID]','$_REQUEST[content]', '$_REQUEST[expiration]', '$target_file')";
+    $sql = "INSERT INTO notices (authorID, content, contactdetails, expiration, image) VALUES ( '$_REQUEST[authorID]', '$_REQUEST[content]', '$_REQUEST[contact]', '$_REQUEST[expiration]', '$target_file')";
     echo "<p>Query: " . $sql . "</p>\n<p>";
-    if ($dbh->exec($sql))
+    if ($dbh->exec($sql)) {
         echo "Inserted notice with expiry date: $_REQUEST[expiration]";
-    else
+        $_SESSION['processMsg'] = "Notice by $_REQUEST[authorID] was added";
+    } else {
         echo "Not inserted";
+        $_SESSION['processMsg'] = "Notice by $_REQUEST[authorID] was not added";
+    }
 } else if ($_REQUEST['submit'] == "Delete") {
     $sql = "DELETE FROM notices WHERE id = '$_REQUEST[id]'";
     echo "<p>Query: " . $sql . "</p>\n<p>";
-    if ($dbh->exec($sql))
+    if ($dbh->exec($sql)) {
         echo "Deleted notice with expiry date: $_REQUEST[expiration]";
-    else
+        $_SESSION['processMsg'] = "Notice by $_REQUEST[authorID] was deleted";
+    } else {
         echo "Not deleted";
+        $_SESSION['processMsg'] = "Notice by $_REQUEST[authorID] was not deleted";
+    }
 } else if ($_REQUEST['submit'] == "Update") {
-    $sql = "UPDATE notices SET content = '$_REQUEST[content]', expiration = '$_REQUEST[expiration]' WHERE id = '$_REQUEST[id]'";
+    $sql = "UPDATE notices SET content = '$_REQUEST[content]', contactdetails = '$_REQUEST[contact]', expiration = '$_REQUEST[expiration]' WHERE id = '$_REQUEST[id]'";
     echo "<p>Query: " . $sql . "</p>\n<p>";
-    if ($dbh->exec($sql))
+    if ($dbh->exec($sql)) {
         echo "Updated notice by with expiry date: $_REQUEST[expiration]";
-    else
+        $_SESSION['processMsg'] = "Notice by $_REQUEST[authorID] was updated";
+    } else {
         echo "Not updated";
+        $_SESSION['processMsg'] = "Notice by $_REQUEST[authorID] was not updated";
+    }
 } else {
     echo "No form submission \n";
+    $_SESSION['processMsg'] = "No valid form submitted";
 }
 echo "</p>\n";
 echo "<h2>Current Notices</h2>\n";
@@ -66,6 +77,9 @@ foreach ($dbh->query($sql) as $row) {
 $dbh = null;
 ?>
 <br>
-<a href="dbmanagement.php">BACK</a>
+    <?php
+    header("Location: DBManagementPage.php");
+    ?>
+<a href="DBManagementPage.php">BACK</a>
 </body>
 </html>
