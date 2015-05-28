@@ -6,16 +6,12 @@ Fixed - Noticelist + eventlist should be formatted to look neater.
 Fixed - Notices and events should not be displayed when past due.
 Fixed - Register new account needs a new field to see if the user wishes to volunteer. User table should have a new column to manage this.
 Fixed - Include php files into first year html's.
+Fixed - Need to add a featured artist. (New DB table for artists column)
+Fixed - Artist categories need to be added, and list artist needs to have the option to view artists by category
+Fixed - Get rid of contact details on the footer of each page.
+Fixed - CSS and links for the login/dbmanagement/user stuff.
 
-Need to add a featured artist. (New DB table for artists column)
-
-Artist categories need to be added, and list artist needs to have the option to view artists by category
-
-CSS and links for the login/dbmanagement/user stuff.
-
-Get rid of contact details on the footer of each page.
 
 Notes:
-Login + signup could be on the same page.
-Eventslist needs to show the artist, and the buy tickets link should be made an actual link (done).
+
 

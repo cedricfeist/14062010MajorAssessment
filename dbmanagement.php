@@ -281,6 +281,12 @@ if ($_SESSION["accountType"] == "admin") {
                 <th>Password Hash</th>
                 <th>Type</th>
                 <th>Volunteer</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Mobile</th>
+                <th>Email</th>
                 <th>Update</th>
                 <th>Delete</th>
             </tr>
@@ -292,8 +298,8 @@ if ($_SESSION["accountType"] == "admin") {
 
                     <?php
                     echo "<tr><input type='hidden' name='id' value='$row[id]' />
-                <td><input type='text' name='username' value='$row[username]' /></td>
-                <td>$row[password]</td>";
+                    <td><input type='text' name='username' value='$row[username]' /></td>
+                    <td>$row[password]</td>";
                     ?>
                     <td>
                         <select name='type'>
@@ -303,6 +309,14 @@ if ($_SESSION["accountType"] == "admin") {
                         </select>
                     </td>
                     <td><input type="radio" name="volunteer" id="volunteer" value="true"<?php if ($row['volunteer'] == 'true') echo " checked";?>>Yes <input type="radio" name="volunteer" id="volunteer" value="false"<?php if ($row['volunteer'] == 'false') echo " checked";?>>No</td>
+                    <?php
+                    echo "<td><input type='text' name='name' value='$row[name]' /></td>
+                    <td><input type='text' name='surname' value='$row[surname]' /></td>
+                    <td><input type='text' name='address' value='$row[address]' /></td>
+                    <td><input type='text' name='phone' value='$row[phone]' /></td>
+                    <td><input type='text' name='mobile' value='$row[mobile]' /></td>
+                    <td><input type='text' name='email' value='$row[email]' /></td>";
+                    ?>
                     <td><input type="submit" name="submit" value="Update"/></td>
                     <td><input type="submit" name="submit" value="Delete" class="delete"></td>
                     </tr>

@@ -26,7 +26,7 @@ if ($_REQUEST['submit'] == "Insert") {
         if ($row[username] == $_REQUEST[username])
             $userExists = true;
 
-    $sql = sprintf("INSERT INTO users (username, password, type, volunteer) VALUES ('$_REQUEST[username]', '%s', '$_REQUEST[type]', '$_REQUEST[volunteer]')", md5($_REQUEST[password]));
+    $sql = sprintf("INSERT INTO users (username, password, type, volunteer, name, surname, address, phone, mobile, email) VALUES ('$_REQUEST[username]', '%s', '$_REQUEST[type]', '$_REQUEST[volunteer]', '$_REQUEST[name]', '$_REQUEST[surname]', '$_REQUEST[address]', '$_REQUEST[phone]', '$_REQUEST[mobile]', '$_REQUEST[email]')", md5($_REQUEST[password]));
     echo "<p>Query: " . $sql . "</p>\n<p>";
     if (!$userExists)
         if ($dbh->exec($sql)) {
@@ -43,20 +43,20 @@ if ($_REQUEST['submit'] == "Insert") {
     echo "<p>Query: " . $sql . "</p>\n<p>";
     if ($dbh->exec($sql)) {
         echo "Deleted $_REQUEST[username]";
-        $_SESSION['processMsg'] = "Deleted $_REQUEST[username]";
+        $_SESSION['processMsg'] = "User $_REQUEST[username] deleted";
     } else {
         echo "Not deleted";
-        $_SESSION['processMsg'] = "$_REQUEST[username] not deleted";
+        $_SESSION['processMsg'] = "User $_REQUEST[username] not deleted";
     }
 } else if ($_REQUEST['submit'] == "Update") {
-    $sql = "UPDATE users SET username = '$_REQUEST[username]', type = '$_REQUEST[type]', volunteer = '$_REQUEST[volunteer]' WHERE id = '$_REQUEST[id]'";
+    $sql = "UPDATE users SET username = '$_REQUEST[username]', type = '$_REQUEST[type]', volunteer = '$_REQUEST[volunteer]', name = '$_REQUEST[name]', surname = '$_REQUEST[surname]', address = '$_REQUEST[address]', phone = '$_REQUEST[phone]', mobile = '$_REQUEST[mobile]', email = '$_REQUEST[email]' WHERE id = '$_REQUEST[id]'";
     echo "<p>Query: " . $sql . "</p>\n<p>";
     if ($dbh->exec($sql)) {
         echo "Updated $_REQUEST[username]";
-        $_SESSION[processMsg] = "Updated $_REQUEST[username]";
+        $_SESSION[processMsg] = "User $_REQUEST[username] updated";
     } else {
         echo "Not updated";
-        $_SESSION[processMsg] = "$_REQUEST[username] not updated";
+        $_SESSION[processMsg] = "User $_REQUEST[username] not updated";
     }
 } else {
     echo "No form submission \n";

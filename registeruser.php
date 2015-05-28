@@ -24,6 +24,36 @@ include("dbconnect.php");
                 <td><label for="password">Password: </label></td>
                 <td><input type="password" name="password" id="password"></td>
             </tr>
+
+            <tr>
+                <td><label for="name">First Name: </label></td>
+                <td><input type="text" name="name" id="name"></td>
+            </tr>
+
+            <tr>
+                <td><label for="surname">Surname: </label></td>
+                <td><input type="text" name="surname" id="surname"></td>
+            </tr>
+
+            <tr>
+                <td><label for="address">Address: </label></td>
+                <td><input type="text" name="address" id="address"></td>
+            </tr>
+
+            <tr>
+                <td><label for="phone">Phone: </label></td>
+                <td><input type="text" name="phone" id="phone"></td>
+            </tr>
+
+            <tr>
+                <td><label for="mobile">Mobile: </label></td>
+                <td><input type="text" name="mobile" id="mobile"></td>
+            </tr>
+
+            <tr>
+                <td><label for="email">Email: </label></td>
+                <td><input type="text" name="email" id="email"></td>
+            </tr>
         </table>
         Do you wish to become a volunteer?
         <br>
